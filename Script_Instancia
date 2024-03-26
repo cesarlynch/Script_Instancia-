@@ -1,0 +1,15 @@
+# Crear un grupo de recursos (si aún no existe)
+New-AzResourceGroup -Name 'maquina_1_resource_group' -Location 'EastUS'
+
+# Crear una máquina virtual
+New-AzVm `
+    -ResourceGroupName 'maquina_1_resource_group' `
+    -Name 'maquina1vm' `
+    -Location 'EastUS' `
+    -Image 'MicrosoftWindowsServer:WindowsServer:2022-datacenter-azure-edition:latest' `
+    -VirtualNetworkName 'maquina_1_vnet' `
+    -SubnetName 'maquina_1_subnet' `
+    -SecurityGroupName 'maquina_1_network_security_group' `
+    -PublicIpAddressName 'maquina_1_public_ip' `
+    -OpenPorts 80,3389 `
+    -Size 'Standard_D2s_v3'
